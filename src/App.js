@@ -16,13 +16,15 @@ const App = ({ p1, p2, player1, player2, handlePlayer1, handlePlayer2, handleRes
               p1={ p1 }
               player1={ player1 } 
               handlePlayer1={ handlePlayer1 } 
-              serving={ serving } />
+              serving={ serving } 
+              winner={ winner }/>
 
             <Player 
               p2={ p2 }
               player2={ player2 } 
               handlePlayer2={ handlePlayer2 } 
-              serving={ serving } />
+              serving={ serving } 
+              winner={ winner }/>
 
         </div>
 
