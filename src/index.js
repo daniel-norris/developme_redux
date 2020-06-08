@@ -39,7 +39,8 @@ const render = () => {
         player1={ state.player1 } 
         player2={ state.player2 }
         handlePlayer1={ () => store.dispatch({ type: "PLAYER1" }) }
-        handlePlayer2={ () => store.dispatch({ type: "PLAYER2" }) }/>
+        handlePlayer2={ () => store.dispatch({ type: "PLAYER2" }) }
+        handleReset={ () => store.dispatch({ type: "RESET" }) }/>
     </React.StrictMode>,
     document.getElementById('root')
   );
