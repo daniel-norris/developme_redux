@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css'; // dont need this
 import App from './App';
 import * as serviceWorker from './serviceWorker'; // dont need this
+
 // import redux
+import { createStore } from 'redux'; 
+
 // final stage import persist state and compose for local storage
 
 // initial state goes here for entire app 
@@ -13,7 +16,9 @@ const initial = {
 };
 
 // reducer goes here 
-
+const reducer = (state, action) => { 
+  return state; 
+}
 
 
 
@@ -28,8 +33,14 @@ ReactDOM.render(
 
 
 // create store here 
+const store = createStore(reducer, initial); 
 
 // subscribe here
+store.subscribe(() => {
+    let state = store.getState(); 
+    console.log(state.player1); 
+    console.log(state.player2); 
+})
 
 // dispatch here 
 
