@@ -11,11 +11,12 @@ import { createStore } from 'redux';
 const initial = {
     player1: 0,
     player2: 0,
-    serving: false
+    serving: false, 
+    winner: ""
 };
 
-const player1 = state => ({ ...state, player1: state.player1 + 1 });
-const player2 = state => ({ ...state, player2: state.player2 + 1 });
+const player1 = state => ({ ...state, player1: state.player1 === 21 ? 21 : state.player1 + 1, winner: state.player1 === 21 ? "1" : "" });
+const player2 = state => ({ ...state, player2: state.player2 === 21 ? 21 : state.player2 + 1, winner: state.player2 === 21 ? "2" : "" });
 const server = state => ({ ...state, serving: (state.player1 + state.player2) % 5 === 0 ? !state.serving : state.serving });
 
 // reducer goes here 
@@ -27,7 +28,6 @@ const reducer = (state, action) => {
     default: return state; 
   }
 }
-
 
 const store = createStore(
   reducer, 
@@ -43,10 +43,11 @@ const render = () => {
       <App 
         player1={ state.player1 } 
         player2={ state.player2 }
+        serving={ state.serving }
+        winner={ state.winner }
         handlePlayer1={ () => store.dispatch({ type: "PLAYER1" }) }
         handlePlayer2={ () => store.dispatch({ type: "PLAYER2" }) }
-        handleReset={ () => store.dispatch({ type: "RESET" }) }
-        serving={ state.serving }/>
+        handleReset={ () => store.dispatch({ type: "RESET" }) }/>
     </React.StrictMode>,
     document.getElementById('root')
   );
@@ -55,11 +56,9 @@ const render = () => {
 store.subscribe(render); 
 render(); 
 
-
 // create store here 
 
 // subscribe here
-
 
 // dispatch here 
 
