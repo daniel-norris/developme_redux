@@ -11,13 +11,18 @@ import { createStore } from 'redux';
 const initial = {
     player1: 0,
     player2: 0,
+    serving: false
 };
+
+const player1 = state => ({ ...state, player1: state.player1 + 1 });
+const player2 = state => ({ ...state, player2: state.player2 + 1 });
+const server = state => ({ ...state, serving: (state.player1 + state.player2) % 5 === 0 ? !state.serving : state.serving });
 
 // reducer goes here 
 const reducer = (state, action) => { 
   switch(action.type) {
-    case "PLAYER1": return { ...state, player1: state.player1 + 1 };
-    case "PLAYER2": return { ...state, player2: state.player2 + 1 };
+    case "PLAYER1": return server(player1(state)); 
+    case "PLAYER2": return server(player2(state)); 
     case "RESET": return initial; 
     default: return state; 
   }
@@ -40,7 +45,8 @@ const render = () => {
         player2={ state.player2 }
         handlePlayer1={ () => store.dispatch({ type: "PLAYER1" }) }
         handlePlayer2={ () => store.dispatch({ type: "PLAYER2" }) }
-        handleReset={ () => store.dispatch({ type: "RESET" }) }/>
+        handleReset={ () => store.dispatch({ type: "RESET" }) }
+        serving={ state.serving }/>
     </React.StrictMode>,
     document.getElementById('root')
   );
