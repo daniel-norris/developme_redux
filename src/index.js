@@ -9,6 +9,8 @@ import { createStore } from 'redux';
 
 // initial state goes here for entire app 
 const initial = {
+    p1: "player1",
+    p2: "player2",
     player1: 0,
     player2: 0,
     serving: false, 
@@ -41,6 +43,8 @@ const render = () => {
   ReactDOM.render(
     <React.StrictMode>
       <App 
+        p1={ state.p1 }
+        p2={ state.p2 }
         player1={ state.player1 } 
         player2={ state.player2 }
         serving={ state.serving }

@@ -1,58 +1,39 @@
 import React from "react";
+import Player from './components/Player'; 
+import Winner from "./components/Winner";
+import Button from "./components/Button";
+import Header from "./components/Header";
 
-const App = ({ player1, player2, handlePlayer1, handlePlayer2, handleReset, serving, winner }) => (
+const App = ({ p1, p2, player1, player2, handlePlayer1, handlePlayer2, handleReset, serving, winner }) => (
     <React.Fragment>
         {/* header */}
-        <header className="jumbotron mt-4 mb-0">
-            <h1>PongPing</h1>
-        </header>
+        <Header />
 
         {/* scores */}
         <div className="row mb-4">
-            <div className="col-md-6 mt-4">
-                <div className={ serving ? "bg-dark text-white card text-center" : "card text-center" }>
-                    <h5 className="card-header">Player 1</h5>
-                    <div className="card-body">
-                        <p className="card-text display-1">{ player1 }
-                        </p>
-                    </div>
-                    <div className="card-footer">
-                        <button 
-                          className="form-control btn btn-success"
-                          onClick={ handlePlayer1 }>+
-                        </button>
-                    </div>
-                </div>
-            </div>
 
-            <div className="col-md-6 mt-4">
-                <div className={ !serving ? "bg-dark text-white card text-center" : "card text-center" }>
-                    <h5 className="card-header">Player 2</h5>
-                    <div className="card-body">
-                        <p className="card-text display-1">{ player2 }</p>
-                    </div>
-                    <div className="card-footer">
-                        <button 
-                          className="form-control btn btn-success"
-                          onClick={ handlePlayer2 }>
-                            +
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <Player 
+              p1={ p1 }
+              player1={ player1 } 
+              handlePlayer1={ handlePlayer1 } 
+              serving={ serving } />
+
+            <Player 
+              p2={ p2 }
+              player2={ player2 } 
+              handlePlayer2={ handlePlayer2 } 
+              serving={ serving } />
+
         </div>
 
         { /* winner message */}
-        <h2 className={ winner ? "alert alert-success" : "alert alert-secondary" }>{ winner ? `Player ${winner} wins!` : "Game in progress..." }</h2>
+        <Winner winner={ winner } />      
 
         <hr />
 
         { /* reset button */}
-        <button 
-          className="btn btn-danger"
-          onClick={ handleReset }>
-            Reset
-        </button>
+        <Button handleReset={ handleReset } />
+        
     </React.Fragment>
 );
 
