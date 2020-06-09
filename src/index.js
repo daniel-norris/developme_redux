@@ -14,15 +14,16 @@ const initial = {
     player2: 0,
     serving: false, 
     winner: "",
-    history: {}
+    history: []
 };
 
 const history = state => ({
-  ...initial, 
-  history: {
-    player_1: { score: state.player1, won: state.winner === "1" }, 
-    player_2: { score: state.player2, won: state.winner === "2" }
-  }
+    ...initial, 
+    history: [ ...state.history, {
+      player_1: { score: state.player1, won: state.winner === "1" }, 
+      player_2: { score: state.player2, won: state.winner === "2" }
+    }
+  ]
 });
 
 const alternateServes = state => {
