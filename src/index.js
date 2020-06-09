@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 // import redux
-import { createStore } from 'redux'; 
+import { createStore, compose } from 'redux'; 
 
 // final stage import persist state and compose for local storage
+import persistState from 'redux-localstorage'; 
 
 // initial state goes here for entire app 
 const initial = {
@@ -54,10 +55,13 @@ const reducer = (state, action) => {
   }
 }
 
+// setup for middleware localstorage
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
   reducer, 
   initial,
-  window.__REDUX_DEVTOOLS_EXTENSION__&&window.__REDUX_DEVTOOLS_EXTENSION__(),
+  composeEnhancers(persistState())
 ); 
 
 // put reactDOM into store.subscribe() -- not best practice*
