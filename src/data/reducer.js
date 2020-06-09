@@ -2,34 +2,42 @@
 
 import initial from './initial'; 
 
-const history = state => ({
+const history = ({ history, player1, player2, winner }) => ({
     ...initial, 
-    history: [ ...state.history, {
-      player_1: { score: state.player1, won: state.winner === 1 }, 
-      player_2: { score: state.player2, won: state.winner === 2 }
+    history: [ ...history, {
+      player_1: { score: player1, won: winner === 1 }, 
+      player_2: { score: player2, won: winner === 2 }
     }
   ]
 });
 
-const player2Lead = state => {
-  return state.player2 >= state.player1 + 2; 
+const player2Lead = ({ player1, player2 }) => {
+  return player2 >= (player1 + 2); 
 }
 
-const player1Lead = state => {
-  return state.player1 >= state.player2 + 2;
+const player1Lead = ({ player1, player2 }) => {
+  return player1 >= (player2 + 2);
 }
 
-const findWinner = state => {
-  return state.player1 > state.player2 ? 1 : 2; 
+const findWinner = ({ player1, player2 }) => {
+  return player1 > player2 ? 1 : 2; 
+}
+
+const winCondition = ({ player1, player2 }) => {
+    return player1 >= 21 || player2 >= 21; 
 }
 
 const winner = state => ({
   ...state, 
-  winner:  ((state.player1 >= 21 || state.player2 >= 21) && (player1Lead || player2Lead)) ? findWinner(state) : 0 
+  winner: ((winCondition(state)) && (player1Lead || player2Lead)) ? findWinner(state) : 0 
 }); 
 
-const alternateServes = state => {
+const isDeuce = state => {
     return state.player1 >= 20 && state.player2 >= 20 ? 2 : 5;
+}
+
+const totalScores = state => {
+    return state.player1 + state.player2; 
 }
 
 // refactor this using computed property names and an action payload 
@@ -43,8 +51,7 @@ const player2 = state => ({
 
 const server = state => ({
     ...state, 
-    p1serving: ((state.player1 + state.player2) % alternateServes(state) === 0) ? !state.p1serving : state.p1serving
-
+    p1serving: ((totalScores) % isDeuce(state) === 0) ? !state.p1serving : state.p1serving
 }); 
     
 // reducer goes here 

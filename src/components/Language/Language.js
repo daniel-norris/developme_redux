@@ -1,6 +1,4 @@
 import React from 'react'; 
-import EN from '../../translations.json'; 
-
 
 const Language = ({ isEnglish, handleLanguageChange }) => (
     <button

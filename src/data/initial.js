@@ -1,4 +1,3 @@
-import React from 'react'; 
 
 // initial state goes here for entire app 
 const initial = {
