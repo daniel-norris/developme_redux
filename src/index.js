@@ -9,13 +9,15 @@ import { createStore } from 'redux';
 
 // initial state goes here for entire app 
 const initial = {
-    p1: "player1",
-    p2: "player2",
     player1: 0,
     player2: 0,
     serving: false, 
     winner: ""
 };
+
+const alternateServes = state => {
+    return state.player1 >= 20 && state.player2 >= 20 ? 2 : 5;
+}
 
 const player1 = state => ({ 
   ...state, 
@@ -24,12 +26,15 @@ const player1 = state => ({
 
 const player2 = state => ({ 
   ...state, 
-  player2: state.winner ? state.player2 : state.player2 + 1, winner: state.player2 >= 21 && (state.player2 >= state.player1 + 2) ? "2" : "" });
+  player2: state.winner ? state.player2 : state.player2 + 1, 
+  winner: state.player2 >= 21 && (state.player2 >= state.player1 + 2) ? "2" : "" });
 
-const server = state => ({ 
-  ...state, 
-  serving: (state.player1 + state.player2) % 5 === 0 ? !state.serving : state.serving });
+const server = state => ({
+    ...state, 
+    serving: ((state.player1 + state.player2) % alternateServes(state) === 0) ? !state.serving : state.serving
 
+}); 
+    
 // reducer goes here 
 const reducer = (state, action) => { 
   switch(action.type) {
@@ -52,8 +57,6 @@ const render = () => {
   ReactDOM.render(
     <React.StrictMode>
       <App 
-        p1={ state.p1 }
-        p2={ state.p2 }
         player1={ state.player1 } 
         player2={ state.player2 }
         serving={ state.serving }
