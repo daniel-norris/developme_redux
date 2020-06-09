@@ -13,32 +13,48 @@ const initial = {
     player1: 0,
     player2: 0,
     serving: false, 
-    winner: "",
+    winner: 0,
     history: []
 };
 
 const history = state => ({
     ...initial, 
     history: [ ...state.history, {
-      player_1: { score: state.player1, won: state.winner === "1" }, 
-      player_2: { score: state.player2, won: state.winner === "2" }
+      player_1: { score: state.player1, won: state.winner === 1 }, 
+      player_2: { score: state.player2, won: state.winner === 2 }
     }
   ]
 });
+
+const player2Lead = state => {
+  return state.player2 >= state.player1 + 2; 
+}
+
+const player1Lead = state => {
+  return state.player1 >= state.player2 + 2;
+}
+
+const findWinner = state => {
+  return state.player1 > state.player2 ? 1 : 2; 
+}
+
+const winner = state => ({
+  ...state, 
+  winner:  ((state.player1 >= 21 || state.player2 >= 21) && (player1Lead || player2Lead)) ? findWinner(state) : 0 
+}); 
 
 const alternateServes = state => {
     return state.player1 >= 20 && state.player2 >= 20 ? 2 : 5;
 }
 
+// refactor this using computed property names and an action payload 
 const player1 = state => ({ 
   ...state, 
-  player1: state.winner ? state.player1 : state.player1 + 1,
-  winner: state.player1 >= 21 && (state.player1 >= state.player2 + 2) ? "1" : "" });
+  player1: state.winner ? state.player1 : state.player1 + 1 });
 
 const player2 = state => ({ 
   ...state, 
-  player2: state.winner ? state.player2 : state.player2 + 1, 
-  winner: state.player2 >= 21 && (state.player2 >= state.player1 + 2) ? "2" : "" });
+  player2: state.winner ? state.player2 : state.player2 + 1 });
 
 const server = state => ({
     ...state, 
@@ -49,8 +65,8 @@ const server = state => ({
 // reducer goes here 
 const reducer = (state, action) => { 
   switch(action.type) {
-    case "PLAYER1": return server(player1(state)); 
-    case "PLAYER2": return server(player2(state)); 
+    case "PLAYER1": return winner(server(player1(state))); 
+    case "PLAYER2": return winner(server(player2(state))); 
     case "RESET": return history(state); 
     default: return state; 
   }
