@@ -3,6 +3,7 @@ import Winner from "./Winner";
 import Button from "./Button";
 import Header from "./Header";
 import Language from "./Language"; 
+import Table from "./Table"; 
 
 import Player1 from './Player/Player1'; 
 import Player2 from './Player/Player2'; 
@@ -18,24 +19,33 @@ const App = ({
 
         <Language handleLanguageChange={ handleLanguageChange }/>
 
-        {/* header */}
-        <Header />
+        <div className="d-flex">
+            <main >
+                {/* header */}
+                <Header />
 
-        {/* scores */}
-        <div className="row mb-4">
+                {/* scores */}
+                <div className="row mb-4">
 
-            <Player1 
-              label={ "1" }
-              handlePlayer={ handlePlayer1 } />
+                    <Player1 
+                    label={ "1" }
+                    handlePlayer={ handlePlayer1 } />
 
-            <Player2 
-              label={ "2" }
-              handlePlayer={ handlePlayer2 } />
+                    <Player2 
+                    label={ "2" }
+                    handlePlayer={ handlePlayer2 } />
+
+                </div>
+
+                { /* winner message */}
+                <Winner />      
+                
+            </main>
+
+            <Table />
 
         </div>
 
-        { /* winner message */}
-        <Winner />      
 
         <hr />
 
