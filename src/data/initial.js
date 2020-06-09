@@ -6,6 +6,7 @@ const initial = {
     player2: 0,
     p1serving: true, 
     winner: 0,
+    isEnglish: true, 
     history: []
 };
 

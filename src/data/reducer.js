@@ -52,6 +52,7 @@ const reducer = (state, action) => {
   switch(action.type) {
     case "PLAYER1": return winner(server(player1(state))); 
     case "PLAYER2": return winner(server(player2(state))); 
+    case "LANGUAGE": return { ...state, isEnglish: !state.isEnglish };
     case "RESET": return history(state); // get history to trigger on win not reset 
     default: return state; 
   }

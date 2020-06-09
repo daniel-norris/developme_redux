@@ -34,7 +34,8 @@ ReactDOM.render(
       <App 
         handlePlayer1={ () => store.dispatch({ type: "PLAYER1" }) }
         handlePlayer2={ () => store.dispatch({ type: "PLAYER2" }) }
-        handleReset={ () => store.dispatch({ type: "RESET" }) }/>
+        handleReset={ () => store.dispatch({ type: "RESET" }) }
+        handleLanguageChange={ () => store.dispatch({ type: "LANGUAGE" })} />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

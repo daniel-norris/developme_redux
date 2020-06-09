@@ -1,0 +1,17 @@
+{
+    "EN": {
+       "player": "Player",
+       "serving": "Serving", 
+       "reset": "Reset", 
+       "win": "Wins", 
+       "ingame": "Game in progress..."
+    }, 
+
+    "ES": {
+        "player": "Ludanto",
+        "serving": "Servas", 
+        "reset": "Restarigi",
+        "win": "Venkoj",
+        "ingame": "Ludo en progreso..."
+    }
+}

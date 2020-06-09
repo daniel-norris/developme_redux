@@ -2,6 +2,7 @@ import React from "react";
 import Winner from "./Winner";
 import Button from "./Button";
 import Header from "./Header";
+import Language from "./Language"; 
 
 import Player1 from './Player/Player1'; 
 import Player2 from './Player/Player2'; 
@@ -10,9 +11,13 @@ const App = ({
     handlePlayer1, 
     handlePlayer2, 
     handleReset, 
+    handleLanguageChange
 }) => (
 
     <React.Fragment>
+
+        <Language handleLanguageChange={ handleLanguageChange }/>
+
         {/* header */}
         <Header />
 
