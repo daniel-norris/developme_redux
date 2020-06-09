@@ -52,7 +52,7 @@ const player2 = state => ({
 
 const server = state => ({
     ...state, 
-    p1serving: ((totalScores) % isDeuce(state) === 0) ? !state.p1serving : state.p1serving
+    p1serving: ((totalScores(state)) % isDeuce(state) === 0) ? !state.p1serving : state.p1serving
 }); 
     
 // reducer goes here 

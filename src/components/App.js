@@ -20,7 +20,7 @@ const App = ({
         <Language handleLanguageChange={ handleLanguageChange }/>
 
         <div className="d-flex">
-            <main >
+            <main style={{ width: "100vw" }}>
                 {/* header */}
                 <Header />
 
@@ -41,7 +41,7 @@ const App = ({
                 <Winner />      
                 
             </main>
-
+            
             <Table />
 
         </div>

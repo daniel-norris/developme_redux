@@ -1,12 +1,12 @@
 import React from 'react'; 
 
 const Table = ({ history }) => (
-    <table className="table table-sm">
+    <table className="table table-hover mt-4 mx-2">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Player1</th>
-                <th scope="col">Player2</th>
+                <th scope="col">Player 1</th>
+                <th scope="col">Player 2</th>
                 <th scope="col">Winner</th>
             </tr>
         </thead>
@@ -21,6 +21,7 @@ const Table = ({ history }) => (
             ))}
         </tbody>
     </table>
+
 );
 
 export default Table; 
