@@ -12,8 +12,17 @@ const initial = {
     player1: 0,
     player2: 0,
     serving: false, 
-    winner: ""
+    winner: "",
+    history: {}
 };
+
+const history = state => ({
+  ...initial, 
+  history: {
+    player_1: { score: state.player1, won: state.winner === "1" }, 
+    player_2: { score: state.player2, won: state.winner === "2" }
+  }
+});
 
 const alternateServes = state => {
     return state.player1 >= 20 && state.player2 >= 20 ? 2 : 5;
@@ -40,7 +49,7 @@ const reducer = (state, action) => {
   switch(action.type) {
     case "PLAYER1": return server(player1(state)); 
     case "PLAYER2": return server(player2(state)); 
-    case "RESET": return initial; 
+    case "RESET": return history(state); 
     default: return state; 
   }
 }
