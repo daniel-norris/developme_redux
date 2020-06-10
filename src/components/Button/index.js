@@ -8,4 +8,12 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(Button); 
+const mapDispatchToProps = dispatch => {
+    return {
+        handleReset: () => dispatch({ type: "RESET" })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Button); 
+
+

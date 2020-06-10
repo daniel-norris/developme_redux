@@ -8,4 +8,10 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(Language); 
+const mapDispatchToProps = dispatch => {
+    return {
+        handleLanguageChange: () => dispatch({ type: "LANGUAGE" }) 
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Language); 

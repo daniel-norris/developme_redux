@@ -11,4 +11,10 @@ const mapStateToProps = ({ isEnglish, winner, player1, p1serving }) => {
     };
 };
 
-export default connect(mapStateToProps)(Player); 
+const mapDispatchToProps = dispatch => {
+    return {
+        handlePlayer: () => dispatch({ type: "PLAYER1" })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Player); 

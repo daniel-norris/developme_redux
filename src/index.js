@@ -31,11 +31,7 @@ const store = createStore(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={ store }>
-      <App 
-        handlePlayer1={ () => store.dispatch({ type: "PLAYER1" }) }
-        handlePlayer2={ () => store.dispatch({ type: "PLAYER2" }) }
-        handleReset={ () => store.dispatch({ type: "RESET" }) }
-        handleLanguageChange={ () => store.dispatch({ type: "LANGUAGE" })} />
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
