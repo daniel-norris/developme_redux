@@ -3,6 +3,9 @@ import { reset } from '../../data/actions';
 
 import Button from './Button'; 
 
+/* importing history */
+import history from '../../history';  
+
 const mapStateToProps = state => {
     return {
         isEnglish: state.isEnglish
@@ -11,9 +14,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        handleReset: () => dispatch(reset())
-    }
-}
+        handleReset: () => { dispatch(reset()); 
+            history.push('/')
+        },
+    };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Button); 
 

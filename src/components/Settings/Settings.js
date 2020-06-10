@@ -7,12 +7,12 @@ import Header from "../Header";
 class Settings extends Component {
     constructor(props) {
         super(props); 
-        this.state = { settings: [{ 
+        this.state = {
             p1name: "", 
             p2name: "",
             score: 0,
             alternate: 0 
-        }] }
+        }
         
         this.handleP1Change = this.handleP1Change.bind(this); 
         this.handleP2Change = this.handleP2Change.bind(this); 
@@ -22,43 +22,29 @@ class Settings extends Component {
     }
     
     handleP1Change(e) {
-
-        let updateSettings = [...this.state.settings]; 
-        updateSettings[0].p1name = e.currentTarget.value; 
-
-        this.setState({ settings: updateSettings })        
+        this.setState({ p1name: e.currentTarget.value })        
     }
     
     handleP2Change(e) {
-
-        let updateSettings = [...this.state.settings]; 
-        updateSettings[0].p2name = e.currentTarget.value; 
-
-        this.setState({ settings: updateSettings })        
+        this.setState({ p2name: e.currentTarget.value })        
     }
 
     handleScoreChange(e) {
-
-        let updateSettings = [...this.state.settings]; 
-        updateSettings[0].score = e.currentTarget.value; 
-
-        this.setState({ settings: updateSettings })        
+        this.setState({ score: e.currentTarget.value })        
     }
 
     handleAlternateChange(e) {
-
-        let updateSettings = [...this.state.settings]; 
-        updateSettings[0].alternate = e.currentTarget.value; 
-
-        this.setState({ settings: updateSettings })        
+        this.setState({ alternate: e.currentTarget.value })        
     }
 
     handleSubmit(e) {
         e.preventDefault(); 
-        this.props.handleSave(this.state.settings);
+        this.props.handleSave({...this.state}); // make sure you pass an copy and use curly braces to use the spread operator
     }
 
     render() {
+
+        const { p1name, p2name, score, alternate } = this.state; 
 
         return(
             <>
@@ -70,7 +56,7 @@ class Settings extends Component {
                         id= { "p1name" } 
                         type={ "text" } 
                         name={ "p1name" } 
-                        value={ this.state.settings[0].p1name }
+                        value={ this.props.p1name }
                         onChange={ (e) => this.handleP1Change(e) }
                         required></Input>
                     <Label id={ "p2name" }>Player 2 Name</Label>
@@ -78,7 +64,7 @@ class Settings extends Component {
                         id= { "p2name" } 
                         type={ "text" } 
                         name={ "p2name" }
-                        value={ this.state.settings[0].p2name }
+                        value={ this.props.p2name  }
                         onChange={ (e) => this.handleP2Change(e) }
                         required></Input>
                     <Label id={ "score" }>Winning Score</Label>
@@ -86,7 +72,7 @@ class Settings extends Component {
                         id= { "score" } 
                         type={ "number" } 
                         name={ "score" } 
-                        value={ this.state.settings.score }
+                        value={ this.props.score  }
                         onChange={ (e) => this.handleScoreChange(e) }
                         required></Input>
                     <Label id={ "alternate" }>Alternate Every</Label>
@@ -94,7 +80,7 @@ class Settings extends Component {
                         id= { "alternate" } 
                         type={ "number" } 
                         name={ "alternate" } 
-                        value={ this.state.settings.alternate }
+                        value={ this.props.alternate }
                         onChange={ (e) => this.handleAlternateChange(e) }
                         required></Input>
                 <button className="btn btn-info mt-2">Start Game</button>

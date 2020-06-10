@@ -3,8 +3,9 @@ import { player2 } from '../../data/actions';
 
 import Player from './Player'; 
 
-const mapStateToProps = ({ isEnglish, winner, player2, p1serving }) => {
+const mapStateToProps = ({ settings, isEnglish, winner, player2, p1serving }) => {
     return {
+        name: settings.p2name,
         winner: winner,
         score: player2,
         serving: !p1serving,

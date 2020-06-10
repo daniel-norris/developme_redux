@@ -2,13 +2,14 @@
 
 import initial from './initial'; 
 
-const history = ({ history, player1, player2, winner }) => ({
+const history = ({ settings, history, player1, player2, winner }) => ({
     ...initial, 
+    settings: { ...settings},
     history: [ ...history, {
         player_1: { score: player1, won: winner === 1 }, 
         player_2: { score: player2, won: winner === 2 }
         }
-    ]
+    ], 
 });
 
 const player2Lead = ({ player1, player2 }) => {
@@ -19,12 +20,12 @@ const player1Lead = ({ player1, player2 }) => {
   return player1 >= (player2 + 2);
 }
 
-const findWinner = ({ player1, player2 }) => {
-  return player1 > player2 ? 1 : 2; 
+const findWinner = ({ player1, player2, settings }) => {
+  return player1 > player2 ? settings.p1name : settings.p2name; 
 }
 
-const winCondition = ({ player1, player2 }) => {
-    return player1 >= 21 || player2 >= 21; 
+const winCondition = ({ player1, player2, settings }) => {
+    return player1 >= (settings.score ? settings.score : 21) || player2 >= (settings.score ? settings.score : 21); 
 }
 
 const winner = state => ({
@@ -32,14 +33,13 @@ const winner = state => ({
     winner: ((winCondition(state)) && (player1Lead(state) || player2Lead(state))) ? findWinner(state) : 0 
 }); 
 
-const alternateOn = state => {
-    return state.player1 >= 20 && state.player2 >= 20 ? 2 : 5;
+const alternateOn = ({ player1, player2, settings }) => {
+    return player1 >= (settings.score - 1) && player2 >= (settings.score - 1) ? 2 : settings.alternate;
 }
 
 const totalScores = state => {
     return state.player1 + state.player2; 
 }
-
 
 
 // refactor this using computed property names and an action payload 
