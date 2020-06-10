@@ -29,10 +29,10 @@ const winCondition = ({ player1, player2 }) => {
 
 const winner = state => ({
     ...state, 
-    winner: ((winCondition(state)) && (player1Lead || player2Lead)) ? findWinner(state) : 0 
+    winner: ((winCondition(state)) && (player1Lead(state) || player2Lead(state))) ? findWinner(state) : 0 
 }); 
 
-const isDeuce = state => {
+const alternateOn = state => {
     return state.player1 >= 20 && state.player2 >= 20 ? 2 : 5;
 }
 
@@ -52,7 +52,7 @@ const player2 = state => ({
 
 const server = state => ({
     ...state, 
-    p1serving: ((totalScores(state)) % isDeuce(state) === 0) ? !state.p1serving : state.p1serving
+    p1serving: ((totalScores(state)) % alternateOn(state)) === 0 ? !state.p1serving : state.p1serving
 }); 
     
 // reducer goes here 
