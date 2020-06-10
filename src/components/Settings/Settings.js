@@ -13,6 +13,7 @@ class Settings extends Component {
             score: 0,
             alternate: 0 
         }] }
+        
         this.handleP1Change = this.handleP1Change.bind(this); 
         this.handleP2Change = this.handleP2Change.bind(this); 
         this.handleScoreChange = this.handleScoreChange.bind(this); 

@@ -10,9 +10,12 @@ import Player2 from './Player/Player2';
 
 import Settings from './Settings'; 
 
+/* import history for programmatic navigation */ 
+import history from '../history'; 
+
 /* routing */ 
 import {
-    BrowserRouter as Router, 
+    Router, 
     Route, 
     Link, 
     Switch
@@ -26,7 +29,7 @@ const App = ({
     handleLanguageChange
 }) => (
 
-    <Router>
+    <Router history={ history }>
         <>
             <Switch>
                 <Route exact path="/">
