@@ -40,6 +40,8 @@ const totalScores = state => {
     return state.player1 + state.player2; 
 }
 
+
+
 // refactor this using computed property names and an action payload 
 // refactor using tdd and tests from previous weeks 
 const player1 = state => ({ 
@@ -54,12 +56,18 @@ const server = state => ({
     ...state, 
     p1serving: ((totalScores(state)) % alternateOn(state)) === 0 ? !state.p1serving : state.p1serving
 }); 
+
+const saveSettings = (state, { settings }) => ({
+    ...state, 
+    settings: settings
+})
     
 // reducer goes here 
 const reducer = (state, action) => { 
     switch(action.type) {
         case "PLAYER1": return winner(server(player1(state))); 
         case "PLAYER2": return winner(server(player2(state))); 
+        case "SAVE_SETTINGS": return saveSettings(state, action); 
         case "LANGUAGE": return { ...state, isEnglish: !state.isEnglish };
         case "RESET": return history(state); // get history to trigger on win not reset 
         default: return state; 

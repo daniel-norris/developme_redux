@@ -1,19 +1,20 @@
 import { connect } from 'react-redux'; 
+import { saveSettings } from '../../data/actions'; 
 
 import Settings from './Settings'; 
 
 const mapStateToProps = state => {
     return {
-        p1name: state.p1name
+        settings: state
     };
 };
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         handleReset: () => dispatch({ type: "RESET" })
-//     }
-// }
+const mapDispatchToProps = dispatch => {
+    return {
+        handleSave: (data) => dispatch(saveSettings(data))
+    }
+}
 
-export default connect(mapStateToProps)(Settings); 
+export default connect(mapStateToProps, mapDispatchToProps)(Settings); 
 
 

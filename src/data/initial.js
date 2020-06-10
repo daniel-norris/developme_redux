@@ -1,7 +1,7 @@
 
 // initial state goes here for entire app 
 const initial = {
-    p1name: "test",
+    settings: [], 
     player1: 0,
     player2: 0,
     p1serving: true, 

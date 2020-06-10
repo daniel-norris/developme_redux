@@ -22,3 +22,11 @@ export const reset = () => {
     };
 };
 
+export const saveSettings = (settings) => {
+
+    return {
+        type: "SAVE_SETTINGS", 
+        settings: settings
+    };
+};
+
