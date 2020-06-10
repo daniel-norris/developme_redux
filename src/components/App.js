@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Winner from "./Winner";
 import Button from "./Button";
 import Header from "./Header";
@@ -8,6 +8,19 @@ import Table from "./Table";
 import Player1 from './Player/Player1'; 
 import Player2 from './Player/Player2'; 
 
+/* form imports */ 
+import Form from './Form'; 
+import Label from './Label'; 
+import Input from './Input'; 
+
+/* routing */ 
+import {
+    BrowserRouter as Router, 
+    Route, 
+    Link, 
+    Switch
+} from 'react-router-dom'; 
+
 const App = ({ 
     handlePlayer1, 
     handlePlayer2, 
@@ -15,44 +28,67 @@ const App = ({
     handleLanguageChange
 }) => (
 
-    <React.Fragment>
+    <Router>
+        <>
+            <Switch>
+                <Route exact path="/">
+                    <Header />
+                    <Form>
+                        <Label id={ "p1name" }>Player 1 Name</Label>
+                        <Input id= { "p1name" } type={ "text" } name={ "p1name" } required></Input>
+                        <Label id={ "p2name" }>Player 2 Name</Label>
+                        <Input id= { "p2name" } type={ "text" } name={ "p2name" } required></Input>
+                        <Label id={ "score" }>Winning Score</Label>
+                        <Input id= { "score" } type={ "number" } name={ "score" } required></Input>
+                        <Label id={ "alternate" }>Alternate Every</Label>
+                        <Input id= { "alternate" } type={ "number" } name={ "alternate" } required></Input>
+                        
+                        <button className="btn btn-info mt-4">Start Game</button>
+                    </Form>
+                </Route>
 
-        <Language handleLanguageChange={ handleLanguageChange }/>
+                <Route exact path="/pongping"> 
 
-        <div className="d-flex">
-            <main style={{ width: "100vw" }}>
-                {/* header */}
-                <Header />
+                    <Language handleLanguageChange={ handleLanguageChange }/>
 
-                {/* scores */}
-                <div className="row mb-4">
+                    <div className="d-flex">
+                        <main style={{ width: "100vw" }}>
+                            {/* header */}
+                            <Header />
 
-                    <Player1 
-                    label={ "1" }
-                    handlePlayer={ handlePlayer1 } />
+                            {/* scores */}
+                            <div className="row mb-4">
 
-                    <Player2 
-                    label={ "2" }
-                    handlePlayer={ handlePlayer2 } />
+                                <Player1 
+                                label={ "1" }
+                                handlePlayer={ handlePlayer1 } />
 
-                </div>
+                                <Player2 
+                                label={ "2" }
+                                handlePlayer={ handlePlayer2 } />
 
-                { /* winner message */}
-                <Winner />      
-                
-            </main>
+                            </div>
+
+                            { /* winner message */}
+                            <Winner />      
+                            
+                        </main>
+                        
+                        <Table />
+
+                    </div>
+
+
+                    <hr />
+
+                    { /* reset button */}
+                    <Button handleReset={ handleReset } />
+
+                </Route>
+            </Switch>
             
-            <Table />
-
-        </div>
-
-
-        <hr />
-
-        { /* reset button */}
-        <Button handleReset={ handleReset } />
-        
-    </React.Fragment>
+        </>
+    </Router>
 );
 
 export default App;
