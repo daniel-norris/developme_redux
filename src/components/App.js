@@ -8,10 +8,7 @@ import Table from "./Table";
 import Player1 from './Player/Player1'; 
 import Player2 from './Player/Player2'; 
 
-/* form imports */ 
-import Form from './Form'; 
-import Label from './Label'; 
-import Input from './Input'; 
+import Settings from './Settings'; 
 
 /* routing */ 
 import {
@@ -20,6 +17,7 @@ import {
     Link, 
     Switch
 } from 'react-router-dom'; 
+
 
 const App = ({ 
     handlePlayer1, 
@@ -32,19 +30,7 @@ const App = ({
         <>
             <Switch>
                 <Route exact path="/">
-                    <Header />
-                    <Form>
-                        <Label id={ "p1name" }>Player 1 Name</Label>
-                        <Input id= { "p1name" } type={ "text" } name={ "p1name" } required></Input>
-                        <Label id={ "p2name" }>Player 2 Name</Label>
-                        <Input id= { "p2name" } type={ "text" } name={ "p2name" } required></Input>
-                        <Label id={ "score" }>Winning Score</Label>
-                        <Input id= { "score" } type={ "number" } name={ "score" } required></Input>
-                        <Label id={ "alternate" }>Alternate Every</Label>
-                        <Input id= { "alternate" } type={ "number" } name={ "alternate" } required></Input>
-                        
-                        <button className="btn btn-info mt-4">Start Game</button>
-                    </Form>
+                    <Settings />
                 </Route>
 
                 <Route exact path="/pongping"> 
@@ -85,6 +71,9 @@ const App = ({
                     <Button handleReset={ handleReset } />
 
                 </Route>
+                
+                <p>No page found.</p>
+
             </Switch>
             
         </>

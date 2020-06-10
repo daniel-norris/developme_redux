@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'; 
+import { language } from '../../data/actions'; 
 
 import Language from './Language'; 
 
@@ -10,7 +11,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        handleLanguageChange: () => dispatch({ type: "LANGUAGE" }) 
+        handleLanguageChange: () => dispatch(language()) 
     }
 }
 

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'; 
+import { player2 } from '../../data/actions';
 
 import Player from './Player'; 
 
@@ -13,7 +14,7 @@ const mapStateToProps = ({ isEnglish, winner, player2, p1serving }) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        handlePlayer: () => dispatch({ type: "PLAYER2" })
+        handlePlayer: () => dispatch(player2())
     }
 }
 
