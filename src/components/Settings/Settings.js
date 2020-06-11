@@ -8,10 +8,10 @@ class Settings extends Component {
     constructor(props) {
         super(props); 
         this.state = {
-            p1name: "", 
-            p2name: "",
-            score: 0,
-            alternate: 0 
+            p1name: props.p1name, 
+            p2name: props.p2name, 
+            score: props.score,
+            alternate: props.alternate
         }
         
         this.handleP1Change = this.handleP1Change.bind(this); 
@@ -56,7 +56,7 @@ class Settings extends Component {
                         id= { "p1name" } 
                         type={ "text" } 
                         name={ "p1name" } 
-                        value={ this.props.p1name }
+                        value={ this.state.p1name }
                         onChange={ (e) => this.handleP1Change(e) }
                         required></Input>
                     <Label id={ "p2name" }>Player 2 Name</Label>
@@ -64,7 +64,7 @@ class Settings extends Component {
                         id= { "p2name" } 
                         type={ "text" } 
                         name={ "p2name" }
-                        value={ this.props.p2name  }
+                        value={ this.state.p2name  }
                         onChange={ (e) => this.handleP2Change(e) }
                         required></Input>
                     <Label id={ "score" }>Winning Score</Label>
@@ -72,7 +72,7 @@ class Settings extends Component {
                         id= { "score" } 
                         type={ "number" } 
                         name={ "score" } 
-                        value={ this.props.score  }
+                        value={ this.state.score  }
                         onChange={ (e) => this.handleScoreChange(e) }
                         required></Input>
                     <Label id={ "alternate" }>Alternate Every</Label>
@@ -80,7 +80,7 @@ class Settings extends Component {
                         id= { "alternate" } 
                         type={ "number" } 
                         name={ "alternate" } 
-                        value={ this.props.alternate }
+                        value={ this.state.alternate }
                         onChange={ (e) => this.handleAlternateChange(e) }
                         required></Input>
                 <button className="btn btn-info mt-2">Start Game</button>

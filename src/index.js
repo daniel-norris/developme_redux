@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 
 // import redux
-import { createStore, compose } from 'redux'; 
+import { createStore, applyMiddleware, compose } from 'redux'; 
 
 // final stage import persist state and compose for local storage
 import persistState from 'redux-localstorage';

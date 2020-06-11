@@ -31,6 +31,8 @@ const App = ({
 
     <Router history={ history }>
         <>
+            <Language handleLanguageChange={ handleLanguageChange }/>
+            
             <Switch>
                 <Route exact path="/">
                     <Settings />
@@ -38,7 +40,6 @@ const App = ({
 
                 <Route exact path="/pongping"> 
 
-                    <Language handleLanguageChange={ handleLanguageChange }/>
 
                     <div className="d-flex">
                         <main style={{ width: "100vw" }}>

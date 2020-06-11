@@ -58,3 +58,19 @@ const mapStateToProps = ({ value, ownprops }) => {
 ```js
 const mapStateToProps = ({ value, ownprops }) => ({ value }); // dont need to declare key name and using parenthesis means 
 ```
+
+# day 4 - API actions 
+
+## Redux-Thunk 
+
+Alternative is Redux-Saga. 
+
+Download `redux-thunk` NOT `redux-thunks`. 
+
+## Planning 
+
+You could transform components to hook or class based and then use componentdidmount or lifecycle method to load the data. 
+
+Alternatively, you can use children props to leave the existing functionining components unaltered. 
+
+Web sockets may enable you to use streaming *potentially* to show a value for progress bars. 
