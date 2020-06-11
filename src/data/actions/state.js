@@ -24,9 +24,19 @@ export const reset = () => {
 
 export const saveSettings = (data) => {
 
+    let api = {...data}; 
+    let p1name = api.player_1.name; 
+    let p2name = api.player_2.name; 
+    let score = api.winning_score; 
+    let alternate = api.change_serve;   
+    
     return {
         type: "SAVE_SETTINGS", 
-        settings: data
+        settings: { 
+            p1name: p1name, 
+            p2name: p2name, 
+            score: score, 
+            alternate: alternate }
     };
 };
 
