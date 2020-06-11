@@ -2,6 +2,7 @@
 
 import initial from './initial'; 
 
+
 const history = ({ settings, history, player1, player2, winner }) => ({
     ...initial, 
     settings: { ...settings},
@@ -66,6 +67,12 @@ const saveSettings = (state, { settings }) => ({
     ...state, 
     settings: settings
 });
+
+const loaded = (state, { history }) => ({
+    ...state, 
+    history: history, 
+    loaded: true
+})
     
 // reducer goes here 
 const reducer = (state, action) => { 
@@ -73,6 +80,7 @@ const reducer = (state, action) => {
         case "PLAYER1": return winner(server(player1(state, action))); 
         case "PLAYER2": return winner(server(player2(state, action))); 
         case "SAVE_SETTINGS": return saveSettings(state, action); 
+        case "LOADED": return loaded(state, action); 
         case "LANGUAGE": return { ...state, isEnglish: !state.isEnglish };
         case "RESET": return history(state); // get history to trigger on win not reset 
         default: return state; 

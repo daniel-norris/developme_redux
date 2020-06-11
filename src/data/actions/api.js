@@ -1,4 +1,4 @@
-import { saveSettings, player1, player2 } from './state'; 
+import { loaded, saveSettings, player1, player2 } from './state'; 
 import axios from '../../axios';
 
 export const postGame = ({ p1name, p2name, score, alternate }) => {
@@ -33,7 +33,7 @@ export const patchScore = player => {
 export const getGames = () => {
     return (dispatch) => {
         axios.get('/games').then(({ data }) => {
-            console.log(data); 
+            dispatch(loaded(data.data)); 
         });
     };
 };

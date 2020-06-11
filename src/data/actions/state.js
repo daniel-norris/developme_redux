@@ -40,3 +40,10 @@ export const saveSettings = ({ id, player_1, player_2, winning_score, change_ser
     };
 };
 
+export const loaded = (data) => {
+    return {
+        type: "LOADED",
+        history: data
+    };
+};
+
