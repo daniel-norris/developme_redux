@@ -16,6 +16,7 @@ export const postGame = ({ p1name, p2name, score, alternate }) => {
 
 export const patchScore = player => { 
     
+    // can also access the current app state wthin API action creators 
     return (dispatch, getState) => { 
 
         const id = getState().settings.id; 

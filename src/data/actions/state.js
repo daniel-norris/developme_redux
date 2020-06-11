@@ -1,12 +1,16 @@
-export const player1 = () => {
+export const player1 = ({ player_1, player_2 }) => {
     return {
-        type: "PLAYER1"
+        type: "PLAYER1",
+        p1serving: player_1.serving ? true : false,
+        winner: player_1.won ? 1 : 0
     };
 };
 
-export const player2 = () => {
+export const player2 = ({ player_1, player_2 }) => {
     return {
-        type: "PLAYER2"
+        type: "PLAYER2",
+        p1serving: player_1.serving ? true : false,
+        winner: player_2.won ? 2 : 0
     };
 };
 
