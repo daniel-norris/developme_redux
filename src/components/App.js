@@ -19,6 +19,7 @@ import {
     Route, 
     Switch
 } from 'react-router-dom'; 
+import Loading from "./Loading";
 
 // logic here determining if id is set to 0 or not 
 
@@ -35,40 +36,39 @@ const App = ({
             
             <Switch>
                 <Route exact path="/">
-                    <Settings />
+                    <Loading>
+                        <Settings />
+                    </Loading>
                 </Route>
 
                 <Route exact path="/pongping"> 
 
+                    <main>
+                        {/* header */}
+                        <Header />
 
-                    <div className="d-flex">
-                        <main style={{ width: "100vw" }}>
-                            {/* header */}
-                            <Header />
+                        {/* scores */}
+                        <div className="row mb-4">
 
-                            {/* scores */}
-                            <div className="row mb-4">
+                            <Player1 
+                            label={ "1" }
+                            handlePlayer={ handlePlayer1 } />
 
-                                <Player1 
-                                label={ "1" }
-                                handlePlayer={ handlePlayer1 } />
+                            <Player2 
+                            label={ "2" }
+                            handlePlayer={ handlePlayer2 } />
 
-                                <Player2 
-                                label={ "2" }
-                                handlePlayer={ handlePlayer2 } />
+                        </div>
 
-                            </div>
-
-                            { /* winner message */}
-                            <Winner />      
-                            
-                        </main>
+                        { /* winner message */}
+                        <Winner />      
                         
+                    </main>
+
+                    <Loading>
                         <Table />
-
-                    </div>
-
-
+                    </Loading>
+                        
                     <hr />
 
                     { /* reset button */}

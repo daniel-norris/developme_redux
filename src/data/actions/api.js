@@ -11,8 +11,8 @@ export const postGame = ({ p1name, p2name, score, alternate }) => {
         }).then(({ data }) => {
             dispatch(saveSettings(data.data));
         }); 
-    }
-}
+    };
+};
 
 export const patchScore = player => { 
     
@@ -27,5 +27,13 @@ export const patchScore = player => {
             const playerAction = player === 1 ? player1(data.data) : player2(data.data); 
             dispatch(playerAction);
         }); 
-    }   
-}
+    };
+};
+
+export const getGames = () => {
+    return (dispatch) => {
+        axios.get('/games').then(({ data }) => {
+            console.log(data); 
+        });
+    };
+};

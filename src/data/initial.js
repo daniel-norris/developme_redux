@@ -16,8 +16,8 @@ const initial = {
     p1serving: true, 
     winner: 0,
     isEnglish: true, 
-    history: []
-
+    history: [], 
+    loaded: false
 };
 
 export default initial; 
