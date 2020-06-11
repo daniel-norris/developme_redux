@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'; 
-import { saveSettings } from '../../data/actions/state'; 
 import history from '../../history'; 
 
 // import api action 

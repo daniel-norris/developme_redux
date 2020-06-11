@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Winner from "./Winner";
 import Button from "./Button";
 import Header from "./Header";
@@ -17,10 +17,10 @@ import history from '../history';
 import {
     Router, 
     Route, 
-    Link, 
     Switch
 } from 'react-router-dom'; 
 
+// logic here determining if id is set to 0 or not 
 
 const App = ({ 
     handlePlayer1, 
