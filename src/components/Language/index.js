@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'; 
-import { language } from '../../data/actions'; 
+import { language } from '../../data/actions/state'; 
 
 import Language from './Language'; 
 

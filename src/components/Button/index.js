@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'; 
-import { reset } from '../../data/actions'; 
+import { reset } from '../../data/actions/state'; 
 
 import Button from './Button'; 
 

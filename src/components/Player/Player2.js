@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'; 
-import { player2 } from '../../data/actions';
+import { player2 } from '../../data/actions/state';
 
 import Player from './Player'; 
 
