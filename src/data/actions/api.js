@@ -37,3 +37,9 @@ export const getGames = () => {
         });
     };
 };
+
+export const deleteGame = (id) => {
+    return (dispatch) => {
+        axios.delete(`/games/${id}`);
+    };
+};
