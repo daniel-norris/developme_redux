@@ -5,6 +5,7 @@
 
 const initial = {
     settings: {
+        id: 0,
         p1name: "", 
         p2name: "",
         score: 0,

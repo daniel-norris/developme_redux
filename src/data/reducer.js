@@ -59,7 +59,7 @@ const server = state => ({
 
 const saveSettings = (state, { settings }) => ({
     ...state, 
-    settings: settings
+    settings: { ...settings, id: state.settings.id + 1 }
 })
     
 // reducer goes here 
