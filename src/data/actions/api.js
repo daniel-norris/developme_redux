@@ -1,4 +1,4 @@
-import { loaded, saveSettings, player1, player2 } from './state'; 
+import { loaded, saveSettings, player1, player2, updateGames, updateHistory } from './state'; 
 import axios from '../../axios';
 
 export const postGame = ({ p1name, p2name, score, alternate }) => {
@@ -38,8 +38,14 @@ export const getGames = () => {
     };
 };
 
-export const deleteGame = (id) => {
-    return (dispatch) => {
-        axios.delete(`/games/${id}`);
+export const deleteGame = (id, index) => {
+    return (dispatch, getState) => {
+
+        const history = getState().history; 
+        history.splice(index, 1); 
+    
+        axios.delete(`/games/${id}`).then((history) => {
+            dispatch(updateHistory(history)); 
+        });
     };
 };

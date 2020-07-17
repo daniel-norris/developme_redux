@@ -47,3 +47,10 @@ export const loaded = (data) => {
     };
 };
 
+export const updateHistory = (data) => {
+    return {
+        type: "LOADED", 
+        history: data
+    };
+};
+

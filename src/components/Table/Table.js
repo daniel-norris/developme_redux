@@ -22,7 +22,7 @@ const Table = ({ history, handleDelete }) => (
                     <td>{ game.player_1.won ? game.player_1.name : game.player_2.name }</td>
                     <td>
                         <button 
-                            onClick={ () => handleDelete(game.id) }
+                            onClick={ () => handleDelete(game.id, index) }
                             className="btn btn-danger">
                             &times;
                         </button>
